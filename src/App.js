@@ -2,8 +2,22 @@ import './App.css';
 import NavScroll from './components/NavScroll';
 import HeadingBig from './components/HeadingBig';
 import {Button} from 'react-bootstrap'
+import { useState } from 'react';
+import Cart from './components/cart';
 
 function App() {
+
+  const [cartStatus,setCartStatus] = useState(false);
+
+  function setCartTrue()
+  {
+    setCartStatus(true)
+  }
+
+  function setCartFalse()
+  {
+    setCartStatus(false)
+  }
 
   const productsArr = [
 
@@ -52,7 +66,8 @@ function App() {
 
   return (
     <>
-    <NavScroll/>
+    {cartStatus && <Cart setCartFalse={setCartFalse}/>}
+    <NavScroll showCart={setCartTrue}/>
     <HeadingBig/>
     <div style={{display:'flex',justifyContent:'space-around'}}>
     {productsArr.map((item,i) =>{
